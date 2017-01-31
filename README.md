@@ -15,7 +15,7 @@ We partition the Quora question pairs into a 90/10 train/test split. We run trai
 Much work remains, specifically:
 
 * Tuning hyperparameters
-* As in [[3]](https://github.com/Smerity/keras_snli), evaluating variant architectures that use recurrent layers in place of the summation of embeddings.  
+* As in [[3]](https://github.com/Smerity/keras_snli), evaluating variant architectures that use recurrent layers in place of the summation of embeddings
 
 ## Requirements
 
