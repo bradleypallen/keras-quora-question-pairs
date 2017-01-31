@@ -48,7 +48,15 @@ Simply run the notebook server using the standard Jupyter command:
 
     $ jupyter notebook
 
-First run quora-question-pairs-data-prep.ipynb; as with the script above, this will generate files for training the Keras model. Then run quora-question-pairs-training next to train and evaluate the model.
+First run 
+
+    quora-question-pairs-data-prep.ipynb
+
+As with the script above, this will generate files for training the Keras model. Then run
+
+    quora-question-pairs-training.ipynb
+    
+next to train and evaluate the model.
 
 ## License
 
