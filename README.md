@@ -60,7 +60,7 @@ MIT. See the LICENSE file for the copyright notice.
 
 [[2]](http://nlp.stanford.edu/pubs/snli_paper.pdf)  Samuel R. Bowman, Gabor Angeli, Christopher Potts, and Christopher D. Manning. "A large annotated corpus for learning natural language inference," in Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing (EMNLP 2015), September 2015.
 
-[[3]](https://github.com/Smerity/keras_snli) Stephen Merity,” 4 September 2016. Retrieved at https://github.com/Smerity/keras_snli on 31 January 2017.
+[[3]](https://github.com/Smerity/keras_snli) Stephen Merity. "Keras SNLI baseline example,” 4 September 2016. Retrieved at https://github.com/Smerity/keras_snli on 31 January 2017.
 
 [[4]](http://nlp.stanford.edu/pubs/glove.pdf) Jeffrey Pennington, Richard Socher, and Christopher D. Manning. "GloVe: Global Vectors for Word Representation," in Proceedings of the 2014 Conference on Empirical Methods In Natural Language Processing (EMNLP 2014), October 2014.
 
