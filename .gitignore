@@ -1,0 +1,5 @@
+.DS_Store
+*.npy
+*.json
+*.h5
+.ipynb_*
