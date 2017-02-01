@@ -20,15 +20,15 @@ Much work remains, specifically:
 ## Requirements
 
 * Python 3.5.2
-* jupyter 4.2.0
+* jupyter 4.2.1
 
 ## Package dependencies
 
-* numpy 1.11.1
+* numpy 1.11.3
 * pandas 0.19.2
 * matplotlib 1.5.3
 * Keras 1.2.1
-* scikit-learn 0.17.1
+* scikit-learn 0.18.1
 * h5py 2.6.0
 * hdf5 1.8.17
 
