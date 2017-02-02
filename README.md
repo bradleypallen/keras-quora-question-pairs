@@ -1,8 +1,12 @@
 # keras-quora-question-pairs
 
-A Keras model that addresses the Quora Question Pairs [[1]](https://data.quora.com/First-Quora-Dataset-Release-Question-Pairs) classification task.
+A Keras model that addresses the Quora Question Pairs [[1]](https://data.quora.com/First-Quora-Dataset-Release-Question-Pairs) dyadic prediction task.
 
 ## Model implementation
+
+The Keras model architecture is shown below:
+
+![[Keras model architecture for Quora Question Pairs dyadic prediction]](quora-q-pairs-model.png)
 
 The model architecture is based on the Stanford Natural Language Inference [[2]](http://nlp.stanford.edu/pubs/snli_paper.pdf) benchmark model developed by Stephen Merity [[3]](https://github.com/Smerity/keras_snli), specifically the version using a simple summation of GloVe word embeddings [[4]](http://nlp.stanford.edu/pubs/glove.pdf) to represent each question in the pair. A difference between this and the Merity SNLI benchmark is that our final layer is Dense with sigmoid activation, as opposed to softmax. We use binary cross-entropy as a loss function and Adam for optimization. 
 
