@@ -1,13 +1,12 @@
 from __future__ import print_function
-
 import numpy as np
 import csv, datetime, time, json
 from zipfile import ZipFile
 from os.path import expanduser, exists
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from keras.models import Sequential, Model
-from keras.layers import Input, Embedding, Dense, GRU, Dropout, Reshape, Merge, Bidirectional, BatchNormalization, TimeDistributed, Lambda
+from keras.models import Sequential
+from keras.layers import Embedding, Dense, Dropout, Reshape, Merge, Bidirectional, BatchNormalization, TimeDistributed, Lambda
 from keras.regularizers import l2
 from keras.callbacks import Callback, ModelCheckpoint
 from keras.utils.data_utils import get_file
@@ -34,6 +33,7 @@ TEST_SPLIT = 0.1
 RNG_SEED = 13371447
 NB_EPOCHS = 25
 DROPOUT = 0.1
+L2 = 4e-6
 
 if exists(Q1_TRAINING_DATA_FILE) and exists(Q2_TRAINING_DATA_FILE) and exists(LABEL_TRAINING_DATA_FILE) and exists(NB_WORDS_DATA_FILE) and exists(WORD_EMBEDDING_MATRIX_FILE):
     q1_data = np.load(open(Q1_TRAINING_DATA_FILE, 'rb'))
@@ -130,13 +130,13 @@ model = Sequential()
 model.add(Merge([Q1, Q2], mode='concat'))
 model.add(Dropout(DROPOUT))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(4e-6)))
+model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
 model.add(Dropout(DROPOUT))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(4e-6)))
+model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
 model.add(Dropout(DROPOUT))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(4e-6)))
+model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
 model.add(Dropout(DROPOUT))
 model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
