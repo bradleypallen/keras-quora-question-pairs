@@ -6,7 +6,7 @@ from os.path import expanduser, exists
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Sequential
-from keras.layers import Embedding, Dense, Dropout, Reshape, Merge, Bidirectional, BatchNormalization, TimeDistributed, Lambda
+from keras.layers import Embedding, Dense, Dropout, Reshape, Merge, BatchNormalization, TimeDistributed, Lambda
 from keras.regularizers import l2
 from keras.callbacks import Callback, ModelCheckpoint
 from keras.utils.data_utils import get_file
