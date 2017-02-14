@@ -32,8 +32,6 @@ VALIDATION_SPLIT = 0.1
 TEST_SPLIT = 0.1
 RNG_SEED = 13371447
 NB_EPOCHS = 25
-DROPOUT = 0.1
-L2 = 4e-6
 
 if exists(Q1_TRAINING_DATA_FILE) and exists(Q2_TRAINING_DATA_FILE) and exists(LABEL_TRAINING_DATA_FILE) and exists(NB_WORDS_DATA_FILE) and exists(WORD_EMBEDDING_MATRIX_FILE):
     q1_data = np.load(open(Q1_TRAINING_DATA_FILE, 'rb'))
@@ -121,27 +119,25 @@ Q2_test = X_test[:,1]
 Q1 = Sequential()
 Q1.add(Embedding(nb_words + 1, EMBEDDING_DIM, weights=[word_embedding_matrix], input_length=MAX_SEQUENCE_LENGTH, trainable=False))
 Q1.add(TimeDistributed(Dense(EMBEDDING_DIM, activation='relu')))
-Q1.add(Lambda(lambda x: K.sum(x, axis=1), output_shape=(EMBEDDING_DIM, )))
+Q1.add(Lambda(lambda x: K.max(x, axis=1), output_shape=(EMBEDDING_DIM, )))
 Q2 = Sequential()
 Q2.add(Embedding(nb_words + 1, EMBEDDING_DIM, weights=[word_embedding_matrix], input_length=MAX_SEQUENCE_LENGTH, trainable=False))
 Q2.add(TimeDistributed(Dense(EMBEDDING_DIM, activation='relu')))
-Q2.add(Lambda(lambda x: K.sum(x, axis=1), output_shape=(EMBEDDING_DIM, )))
+Q2.add(Lambda(lambda x: K.max(x, axis=1), output_shape=(EMBEDDING_DIM, )))
 model = Sequential()
 model.add(Merge([Q1, Q2], mode='concat'))
-model.add(Dropout(DROPOUT))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
-model.add(Dropout(DROPOUT))
+model.add(Dense(200, activation='relu'))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
-model.add(Dropout(DROPOUT))
+model.add(Dense(200, activation='relu'))
 model.add(BatchNormalization())
-model.add(Dense(EMBEDDING_DIM*2, activation='relu', W_regularizer=l2(L2)))
-model.add(Dropout(DROPOUT))
+model.add(Dense(200, activation='relu'))
 model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
 
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', 
+              optimizer='adam', 
+              metrics=['accuracy', 'precision', 'recall', 'fbeta_score'])
 
 callbacks = [ModelCheckpoint(MODEL_WEIGHTS_FILE, monitor='val_acc', save_best_only=True)]
 
@@ -162,6 +158,10 @@ print("Minutes elapsed: %f" % ((t1 - t0) / 60.))
 
 model.load_weights(MODEL_WEIGHTS_FILE)
 
-loss, accuracy = model.evaluate([Q1_test, Q2_test], y_test)
-
-print('Test loss = {0:.4f}, test accuracy = {1:.4f}'.format(loss, accuracy))
+loss, accuracy, precision, recall, fbeta_score = model.evaluate([Q1_test, Q2_test], y_test)
+print('')
+print('loss      = {0:.4f}'.format(loss))
+print('accuracy  = {0:.4f}'.format(accuracy))
+print('precision = {0:.4f}'.format(precision))
+print('recall    = {0:.4f}'.format(recall))
+print('F         = {0:.4f}'.format(fbeta_score))

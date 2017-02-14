@@ -8,18 +8,23 @@ The Keras model architecture is shown below:
 
 ![[Keras model architecture for Quora Question Pairs dyadic prediction]](quora-q-pairs-model.png)
 
-The model architecture is based on the Stanford Natural Language Inference [[2]](http://nlp.stanford.edu/pubs/snli_paper.pdf) benchmark model developed by Stephen Merity [[3]](https://github.com/Smerity/keras_snli), specifically the version using a simple summation of GloVe word embeddings [[4]](http://nlp.stanford.edu/pubs/glove.pdf) to represent each question in the pair. A difference between this and the Merity SNLI benchmark is that our final layer is Dense with sigmoid activation, as opposed to softmax. We use binary cross-entropy as a loss function and Adam for optimization. 
+The model architecture is based on the Stanford Natural Language Inference [[2]](http://nlp.stanford.edu/pubs/snli_paper.pdf) benchmark model developed by Stephen Merity [[3]](https://github.com/Smerity/keras_snli), specifically the version using a simple summation of GloVe word embeddings [[4]](http://nlp.stanford.edu/pubs/glove.pdf) to represent each question in the pair. A difference between this and the Merity SNLI benchmark is that our final layer is Dense with sigmoid activation, as opposed to softmax. Another key difference is that we are using the max operator as opposed to sum to combine word embeddings into a question representation. We use binary cross-entropy as a loss function and Adam for optimization. 
 
 ## Evaluation
 
-We partition the Quora question pairs into a 90/10 train/test split. We run training for 25 epochs with a further 90/10 train/validation split, saving the weights from the model checkpoint with the maximum validation accuracy. Training takes approximately 150 secs/epoch, using Tensorflow as a backend for Keras on an Amazon Web Services EC2 p2-xlarge GPU compute instance. We finally evaluate the best checkpointed model to obtain a test set accuracy of 0.8181.
+We partition the Quora question pairs into a 90/10 train/test split. We run training for 25 epochs with a further 90/10 train/validation split, saving the weights from the model checkpoint with the maximum validation accuracy. Training takes approximately 150 secs/epoch, using Tensorflow as a backend for Keras on an Amazon Web Services EC2 p2-xlarge GPU compute instance. We finally evaluate the best checkpointed model to obtain a test set accuracy of _0.8291_.
 
 ## Discussion
 
-Much work remains, specifically:
+An initial pass at hyperparameter tuning through line search led to the following observations:
 
-* Tuning hyperparameters
-* As in [[3]](https://github.com/Smerity/keras_snli), evaluating variant architectures that use recurrent layers in place of the summation of embeddings
+* Computing the sentence representation by applying the max operator to the word embeddings slightly outperformed using mean and sum, and slightly outperformed the use of LSTM and GRU recurrent layers.
+* Batch normalization improved accuracy.
+* Any amount of dropout decreased accuracy.
+* Four hidden layers in the fully-connected component had the best accuracy, with between zero and six hidden layers evaluated.
+* Using 200 dimensions for the layers in the fully-connected component showed the best accuracy among tested dimensions 50, 100, 200, and 300.
+
+A more computationally-intensive campaign of randomized search over the space of hyperparameter configurations is planned.
 
 ## Requirements
 
