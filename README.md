@@ -63,26 +63,24 @@ settings a hyperparameter at a time led to the following observations:
 It would appear that complex architectures have yet to outperform a
 bag-of-embeddings approach. As noted in
 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification),
-this is an encouraging result in favor of such an approach in general
-for dyadic prediction using textual data. Outside of the Quora
-baselines, using max as the operator to combine word embeddings seems
-to yield the best results at around 0.83 accuracy.
+this is an encouraging result in favor of using such an approach in
+general for dyadic prediction tasks using textual data. 
 
 How to account for the superior performance of the Quora baselines?
 The simplest Quora architecture is essentially the same as the other
 bag-of-embeddings architectures modulo its use of a recurrent LSTM
-layer to combine the word embeddings into a question representation;
-the above tuning investigation showed no improvement using an
-LSTM. One hypothesis is that training embeddings directly on the Quora
-text corpus, as opposed to using the relatively more generic, publicly
-accessible sources for embeddings such as GloVe is a contributor to
-the difference in performance
+layer to combine the word embeddings into a question representation,
+but our hyperparameter tuning investigation showed no improvement
+using an LSTM or GRU for that purpose. One hypothesis is that training
+embeddings directly on the Quora text corpus, as opposed to using the
+relatively more generic, publicly accessible sources for embeddings
+such as GloVe is a contributor to the difference in performance
 [[8]](#popescu-private-communication). Sensitivity to the source of
 embeddings might also account for the difference between the results
 in
 [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/)
 and the other non-Quora baselines, as a smaller version of GloVe
-appears to have been used in those baselines.
+appears to have been used.
 
 ## Future work
 
