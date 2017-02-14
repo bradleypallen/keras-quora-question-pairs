@@ -60,13 +60,13 @@ settings a hyperparameter at a time led to the following observations:
 * Four hidden layers in the fully-connected component had the best accuracy, with between zero and six hidden layers evaluated.
 * Using 200 dimensions for the layers in the fully-connected component showed the best accuracy among tested dimensions 50, 100, 200, and 300.
 
-It would appear that complex architectures have yet to outperform
-bag-of-embeddings approaches. As noted in
+It would appear that complex architectures have yet to outperform a
+bag-of-embeddings approach. As noted in
 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification),
-this is an encouraging result in favor of simple, bag-of-embeddings
-approaches for dyadic prediction using textual data. Outside of the
-Quora baselines, using max as the operator to combine word embeddings
-seems to yield the best results at around 0.83 accuracy.
+this is an encouraging result in favor of such an approach in general
+for dyadic prediction using textual data. Outside of the Quora
+baselines, using max as the operator to combine word embeddings seems
+to yield the best results at around 0.83 accuracy.
 
 How to account for the superior performance of the Quora baselines?
 The simplest Quora architecture is essentially the same as the other
@@ -76,7 +76,7 @@ the above tuning investigation showed no improvement using an
 LSTM. One hypothesis is that training embeddings directly on the Quora
 text corpus, as opposed to using the relatively more generic, publicly
 accessible sources for embeddings such as GloVe is a contributor to
-the difference in performance. [[8]](#popescu-private-communication).
+the difference in performance [[8]](#popescu-private-communication).
 
 ## Future work
 
