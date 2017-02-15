@@ -37,15 +37,16 @@ on the dataset reported to date:
 
 | Model | Source of Word Embeddings | Accuracy |
 | --- | --- | --- |
-| "LSTM with concatenation" [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | **0.87** |
-| "LSTM with distance and angle" [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | **0.87** |
-| "Decomposable attention" [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.86 |
-| Max bag-of-embeddings (*this model*) | GloVe (840B tokens, 300D) | 0.83 |
-| "Neural bag-of-words" (max) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
-| "Neural bag-of-words" (max & mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
-| "Max-out Window Encoding" with depth 2 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
-| "Neural bag-of-words" (mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.81 |
-| "Spacy + TD-IDF + Siamese" [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/) | GloVe (6B tokens, 300D) | 0.79 |
+| "BiMPM model" [[5]](https://arxiv.org/pdf/1702.03814) | GloVe Common Crawl (840B tokens, 300D) | **0.88** |
+| "LSTM with concatenation" [[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.87 |
+| "LSTM with distance and angle" [[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.87 |
+| "Decomposable attention" [[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.86 |
+| Max bag-of-embeddings (*this model*) | GloVe Common Crawl (840B tokens, 300D) | 0.83 |
+| "Neural bag-of-words" (max) [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Neural bag-of-words" (max & mean) [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Max-out Window Encoding" with depth 2 [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Neural bag-of-words" (mean) [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.81 |
+| "Spacy + TD-IDF + Siamese" [[8]](http://www.erogol.com/duplicate-question-detection-deep-learning/) | GloVe (6B tokens, 300D) | 0.79 |
 
 
 ## Discussion
@@ -53,34 +54,12 @@ on the dataset reported to date:
 An initial pass at hyperparameter tuning by evaluating possible
 settings a hyperparameter at a time led to the following observations:
 
-* Computing the question representation by applying the max operator to the word embeddings slightly outperformed using mean and sum, which is consistent with what is reported in [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification).
-* Computing the question representation using max also slightly outperformed the use of bidirectional LSTM and GRU recurrent layers, again as discussed in [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification).
-* Batch normalization improved accuracy, as observed by [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/).
-* Any amount of dropout decreased accuracy, as also observed by [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/).
+* Computing the question representation by applying the max operator to the word embeddings slightly outperformed using mean and sum, which is consistent with what is reported in [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification).
+* Computing the question representation using max also slightly outperformed the use of bidirectional LSTM and GRU recurrent layers, again as discussed in [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification).
+* Batch normalization improved accuracy, as observed by [[8]](http://www.erogol.com/duplicate-question-detection-deep-learning/).
+* Any amount of dropout decreased accuracy, as also observed by [[8]](http://www.erogol.com/duplicate-question-detection-deep-learning/).
 * Four hidden layers in the fully-connected component had the best accuracy, with between zero and six hidden layers evaluated.
 * Using 200 dimensions for the layers in the fully-connected component showed the best accuracy among tested dimensions 50, 100, 200, and 300.
-
-It would appear that complex architectures have yet to outperform a
-bag-of-embeddings approach. As noted in
-[[6]](https://explosion.ai/blog/quora-deep-text-pair-classification),
-this is an encouraging result in favor of using such an approach in
-general for dyadic prediction tasks using textual data. 
-
-How to account for the superior performance of the Quora baselines?
-The simplest Quora architecture is essentially the same as the other
-bag-of-embeddings architectures modulo its use of a recurrent LSTM
-layer to combine the word embeddings into a question representation,
-but our hyperparameter tuning investigation showed no improvement
-using an LSTM or GRU for that purpose. One hypothesis is that training
-embeddings directly on the Quora text corpus, as opposed to using the
-relatively more generic, publicly accessible sources for embeddings
-such as GloVe is a contributor to the difference in performance
-[[8]](#popescu-private-communication). Sensitivity to the source of
-embeddings might also account for the difference between the results
-in
-[[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/)
-and the other non-Quora baselines, as a smaller version of GloVe
-appears to have been used.
 
 ## Future work
 
@@ -143,11 +122,10 @@ MIT. See the LICENSE file for the copyright notice.
 
 [[4]](http://nlp.stanford.edu/pubs/glove.pdf) Jeffrey Pennington, Richard Socher, and Christopher D. Manning. "GloVe: Global Vectors for Word Representation," in Proceedings of the 2014 Conference on Empirical Methods In Natural Language Processing (EMNLP 2014), October 2014.
 
+[[5]](https://arxiv.org/pdf/1702.03814) Zhiguo Wang, Wael Hamza and Radu Florian. "Bilateral Multi-Perspective Matching for Natural Language Sentences," 13 February 2017. 
+
 [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) Lili Jiang, Shuo Chang, and Nikhil Dandekar. "Semantic Question Matching with Deep Learning," 13 February 2017. Retrieved at https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning on 13 February 2017.
 
 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) Matthew Honnibal. "Deep text-pair classification with Quora's 2017 question dataset," 13 February 2017. Retreived at https://explosion.ai/blog/quora-deep-text-pair-classification on 13 February 2017.
 
 [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/) Eren Golge. "Duplicate Question Detection with Deep Learning on Quora Dataset," 12 February 2017. Retreived at http://www.erogol.com/duplicate-question-detection-deep-learning/ on 13 February 2017.
-
-[[8]](#popescu-private-communication) Ana-Maria Popescu. Private communication, 13 February 2017.
-
