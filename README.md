@@ -124,8 +124,8 @@ MIT. See the LICENSE file for the copyright notice.
 
 [[5]](https://arxiv.org/pdf/1702.03814) Zhiguo Wang, Wael Hamza and Radu Florian. "Bilateral Multi-Perspective Matching for Natural Language Sentences," 13 February 2017.  Retrieved at https://arxiv.org/pdf/1702.03814.pdf on 14 February 2017.
 
-[[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) Lili Jiang, Shuo Chang, and Nikhil Dandekar. "Semantic Question Matching with Deep Learning," 13 February 2017. Retrieved at https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning on 13 February 2017.
+[[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) Lili Jiang, Shuo Chang, and Nikhil Dandekar. "Semantic Question Matching with Deep Learning," 13 February 2017. Retrieved at https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning on 13 February 2017.
 
-[[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) Matthew Honnibal. "Deep text-pair classification with Quora's 2017 question dataset," 13 February 2017. Retreived at https://explosion.ai/blog/quora-deep-text-pair-classification on 13 February 2017.
+[[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) Matthew Honnibal. "Deep text-pair classification with Quora's 2017 question dataset," 13 February 2017. Retreived at https://explosion.ai/blog/quora-deep-text-pair-classification on 13 February 2017.
 
-[[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/) Eren Golge. "Duplicate Question Detection with Deep Learning on Quora Dataset," 12 February 2017. Retreived at http://www.erogol.com/duplicate-question-detection-deep-learning/ on 13 February 2017.
+[[8]](http://www.erogol.com/duplicate-question-detection-deep-learning/) Eren Golge. "Duplicate Question Detection with Deep Learning on Quora Dataset," 12 February 2017. Retreived at http://www.erogol.com/duplicate-question-detection-deep-learning/ on 13 February 2017.
