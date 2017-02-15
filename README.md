@@ -41,10 +41,10 @@ on the dataset reported to date:
 | "LSTM with distance and angle" [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | **0.87** |
 | "Decomposable attention" [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.86 |
 | Max bag-of-embeddings (*this model*) | GloVe (840B tokens, 300D) | 0.83 |
-| "Neural bag-of-words" (max) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | --- | 0.83 |
-| "Neural bag-of-words" (max & mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | --- | 0.83 |
-| "Max-out Window Encoding" with depth 2 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | --- | 0.83 |
-| "Neural bag-of-words" (mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | --- | 0.81 |
+| "Neural bag-of-words" (max) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Neural bag-of-words" (max & mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Max-out Window Encoding" with depth 2 [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
+| "Neural bag-of-words" (mean) [[6]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.81 |
 | "Spacy + TD-IDF + Siamese" [[7]](http://www.erogol.com/duplicate-question-detection-deep-learning/) | GloVe (6B tokens, 300D) | 0.79 |
 
 
