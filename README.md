@@ -122,7 +122,7 @@ MIT. See the LICENSE file for the copyright notice.
 
 [[4]](http://nlp.stanford.edu/pubs/glove.pdf) Jeffrey Pennington, Richard Socher, and Christopher D. Manning. "GloVe: Global Vectors for Word Representation," in Proceedings of the 2014 Conference on Empirical Methods In Natural Language Processing (EMNLP 2014), October 2014.
 
-[[5]](https://arxiv.org/pdf/1702.03814) Zhiguo Wang, Wael Hamza and Radu Florian. "Bilateral Multi-Perspective Matching for Natural Language Sentences," 13 February 2017. 
+[[5]](https://arxiv.org/pdf/1702.03814) Zhiguo Wang, Wael Hamza and Radu Florian. "Bilateral Multi-Perspective Matching for Natural Language Sentences," 13 February 2017.  Retrieved at https://arxiv.org/pdf/1702.03814.pdf on 14 February 2017.
 
 [[5]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) Lili Jiang, Shuo Chang, and Nikhil Dandekar. "Semantic Question Matching with Deep Learning," 13 February 2017. Retrieved at https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning on 13 February 2017.
 
