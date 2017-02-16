@@ -133,6 +133,8 @@ model.add(Dense(200, activation='relu'))
 model.add(BatchNormalization())
 model.add(Dense(200, activation='relu'))
 model.add(BatchNormalization())
+model.add(Dense(200, activation='relu'))
+model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', 
