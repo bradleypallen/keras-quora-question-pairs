@@ -42,7 +42,7 @@ on the dataset reported to date:
 | "LSTM with distance and angle" [[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.87 |
 | "Decomposable attention" [[6]](https://engineering.quora.com/Semantic-Question-Matching-with-Deep-Learning) | "Quora's text corpus" | 0.86 |
 | "L.D.C." [[5]](https://arxiv.org/pdf/1702.03814) | GloVe Common Crawl (840B tokens, 300D) | 0.86 |
-| Max bag-of-embeddings (*this model*) | GloVe Common Crawl (840B tokens, 300D) | 0.83 |
+| Max bag-of-embeddings (*this work*) | GloVe Common Crawl (840B tokens, 300D) | 0.83 |
 | "Multi-Perspective-LSTM" [[5]](https://arxiv.org/pdf/1702.03814) | GloVe Common Crawl (840B tokens, 300D) | 0.83 |
 | "Siamese-LSTM" [[5]](https://arxiv.org/pdf/1702.03814) | GloVe Common Crawl (840B tokens, 300D) | 0.83 |
 | "Neural bag-of-words" (max) [[7]](https://explosion.ai/blog/quora-deep-text-pair-classification) | GloVe Common Crawl pruned to 1M vocab. (spaCy default) | 0.83 |
