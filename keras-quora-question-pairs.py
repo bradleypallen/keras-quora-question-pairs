@@ -52,9 +52,9 @@ else:
     with open(KERAS_DATASETS_DIR + QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
-            question1.append(row['question1'])
-            question2.append(row['question2'])
-            is_duplicate.append(row['is_duplicate'])
+            question1.append(row['text1'])
+            question2.append(row['text2'])
+            is_duplicate.append(row['duplicate'])
 
     print('Question pairs: %d' % len(question1))
 
