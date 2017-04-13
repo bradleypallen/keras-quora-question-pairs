@@ -93,7 +93,7 @@ This repository contains two different ways to create and run the model.
 
 ### From the command line
 
-    $ python3 keras-question-pairs.py
+    $ python3 keras-quora-question-pairs.py
 
 On first execution, this will download the required Quora and GloVe datasets and generate files that cache the training data and related word count and embedding data for subsequent runs.
 
