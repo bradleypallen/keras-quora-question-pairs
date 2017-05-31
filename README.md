@@ -82,7 +82,7 @@ planned.
 * numpy 1.11.3
 * pandas 0.19.2
 * matplotlib 1.5.3
-* Keras 1.2.1
+* Keras 2.0.5
 * scikit-learn 0.18.1
 * h5py 2.6.0
 * hdf5 1.8.17
