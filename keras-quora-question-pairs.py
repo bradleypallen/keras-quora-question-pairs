@@ -67,7 +67,7 @@ else:
 
     # Build tokenized word index
     questions = question1 + question2
-    tokenizer = Tokenizer(nb_words=MAX_NB_WORDS)
+    tokenizer = Tokenizer(num_words=MAX_NB_WORDS)
     tokenizer.fit_on_texts(questions)
     question1_word_sequences = tokenizer.texts_to_sequences(question1)
     question2_word_sequences = tokenizer.texts_to_sequences(question2)
