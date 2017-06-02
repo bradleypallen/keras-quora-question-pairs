@@ -79,10 +79,10 @@ planned.
 
 ## Package dependencies
 
-* numpy 1.11.3
+* numpy 1.12.1
 * pandas 0.19.2
 * matplotlib 1.5.3
-* Keras 2.0.5
+* Keras 2.0.4
 * scikit-learn 0.18.1
 * h5py 2.6.0
 * hdf5 1.8.17
