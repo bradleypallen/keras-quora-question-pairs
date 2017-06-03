@@ -35,7 +35,7 @@ TEST_SPLIT = 0.1
 RNG_SEED = 13371447
 NB_EPOCHS = 25
 DROPOUT = 0.1
-BATCH_SIZE = 512
+BATCH_SIZE = 32
 
 # If the dataset, embedding matrix and word count exist in the local directory
 if exists(Q1_TRAINING_DATA_FILE) and exists(Q2_TRAINING_DATA_FILE) and exists(LABEL_TRAINING_DATA_FILE) and exists(NB_WORDS_DATA_FILE) and exists(WORD_EMBEDDING_MATRIX_FILE):
@@ -185,10 +185,10 @@ print("Minutes elapsed: %f" % ((t1 - t0) / 60.))
 
 # Print best validation accuracy and epoch
 max_val_acc, idx = max((val, idx) for (idx, val) in enumerate(history.history['val_acc']))
-print('Maximum accuracy at epoch', '{:d}'.format(idx+1), '=', '{:.4f}'.format(max_val_acc))
+print('Maximum validation accuracy = {0:.4f} (epoch {1:d})'.format(max_val_acc, idx+1))
 
 # Evaluate the model with best validation accuracy on the test partition
 model.load_weights(MODEL_WEIGHTS_FILE)
 loss, accuracy = model.evaluate([Q1_test, Q2_test], y_test, verbose=0)
-print('loss = {0:.4f}, accuracy = {1:.4f}'.format(loss, accuracy))
+print('Test loss = {0:.4f}, test accuracy = {1:.4f}'.format(loss, accuracy))
 
