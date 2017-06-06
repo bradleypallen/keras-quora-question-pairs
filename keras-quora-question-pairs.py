@@ -36,6 +36,7 @@ RNG_SEED = 13371447
 NB_EPOCHS = 25
 DROPOUT = 0.1
 BATCH_SIZE = 32
+OPTIMIZER = 'adam'
 
 # If the dataset, embedding matrix and word count exist in the local directory
 if exists(Q1_TRAINING_DATA_FILE) and exists(Q2_TRAINING_DATA_FILE) and exists(LABEL_TRAINING_DATA_FILE) and exists(NB_WORDS_DATA_FILE) and exists(WORD_EMBEDDING_MATRIX_FILE):
@@ -166,7 +167,7 @@ merged = BatchNormalization()(merged)
 is_duplicate = Dense(1, activation='sigmoid')(merged)
 
 model = Model(inputs=[question1,question2], outputs=is_duplicate)
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=OPTIMIZER, metrics=['accuracy'])
 
 # Train the model, checkpointing weights with best validation accuracy
 print("Starting training at", datetime.datetime.now())
